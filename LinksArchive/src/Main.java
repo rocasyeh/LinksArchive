@@ -77,7 +77,7 @@ public class Main {
 
 		// create a menu item "File->Save and New"
 		MenuItem mntmFile_SaveNew = new MenuItem(mncmFile, SWT.NONE);
-		mntmFile_SaveNew.setText(Messages.Main_txtMntmFile_SaveAndNew);
+		mntmFile_SaveNew.setText(Messages.Main_txtMntmFile_SaveNew);
 
 		// create a menu item "File->Save As..."
 		MenuItem mntmFile_SaveAs = new MenuItem(mncmFile, SWT.NONE);
@@ -97,20 +97,20 @@ public class Main {
 		mntmTools.setMenu(mncmTools);
 		
 		MenuItem mntmTools_Options = new MenuItem(mncmTools, SWT.NONE);
-		mntmTools_Options.setText(Messages.Main_mntmOption_text);
+		mntmTools_Options.setText(Messages.Main_txtMntmTools_Option);
 
 
 		/**
 		 * Create a menu set "Help" 
 		 */
 		MenuItem mntmHelp = new MenuItem(menuBar, SWT.CASCADE);
-		mntmHelp.setText(Messages.Main_txtMntmAbout);
+		mntmHelp.setText(Messages.Main_txtMntmHelp);
 		
 		Menu mncmHelp = new Menu(mntmHelp);
 		mntmHelp.setMenu(mncmHelp);
 		
 		MenuItem mntmHelp_About = new MenuItem(mncmHelp, SWT.NONE);
-		mntmHelp_About.setText(Messages.Main_mntmAboutLinkarchive_text);
+		mntmHelp_About.setText(Messages.Main_txtMntmHelp_About);
 		
 		ToolBar toolBar = new ToolBar(shell, SWT.FLAT | SWT.RIGHT);
 		toolBar.setBounds(0, 0, 517, 41);
