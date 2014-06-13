@@ -1,3 +1,4 @@
+package com.linksarchive;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
@@ -15,6 +16,9 @@ public class Messages extends NLS {
 	public static String Main_txtMntmTools;
 	public static String Main_txtMntmTools_Option;
 	public static String Main_btnSavenew_text;
+	public static String Main_btnNewButton_text;
+	public static String Main_btnNewButton_1_text;
+	public static String Main_btnNewButton_text_1;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
