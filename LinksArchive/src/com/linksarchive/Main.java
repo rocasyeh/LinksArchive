@@ -5,6 +5,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.ToolItem;
@@ -13,6 +14,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 
 public class Main {
@@ -36,7 +39,7 @@ public class Main {
 	}
 
 	/**
-	 * Open the window.
+	 * Open the Main window.
 	 */
 	public void open() {
 		Display display = Display.getDefault();
@@ -51,10 +54,82 @@ public class Main {
 	}
 
 	/**
-	 * Create contents of the window.
+	 * Exit the application.
 	 */
+	public void appExit() {
+		// check whether there is unsave data
+		Boolean fileUnsave = !( txtArchiveSn.getText().isEmpty() && txtArchiveName.getText().isEmpty() && txtLinks.getText().isEmpty() );
+		
+		// if there is an unsave file, ask user to save or not, and then exit.
+		if(fileUnsave) {
+			MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+	        mb.setText("Confirm");
+	        mb.setMessage("There is an unsave file, save before exit?");
+	        if( mb.open() == SWT.YES ) {
+	        	saveFileAs();
+	    		shell.close();
+	        }
+		} else { // show a confirm dialog before exit
+			MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+	        mb.setText("Confirm");
+	        mb.setMessage("Sure to exit?");
+	        if( mb.open() == SWT.YES ) {
+	    		shell.close();
+	        }
+		}
+	}
+
 	/**
-	 * 
+	 * Create a new file
+	 */
+	private void newFile() {
+		// show a msgBox for debugging
+		MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+        mb.setText("Info");
+        mb.setMessage("Create a new file");
+        mb.open();
+        
+		// TODO Create a new file
+	}
+	/**
+	 * Open an exist file
+	 */
+	private void openFile() {
+		// show a msgBox for debugging
+		MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+        mb.setText("Info");
+        mb.setMessage("Open an exist file");
+        mb.open();
+
+		// TODO Open an exist file
+	}
+	/**
+	 * Save the file
+	 */
+	private void saveFile() {
+		// show a msgBox for debugging
+		MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+        mb.setText("Info");
+        mb.setMessage("Save the file");
+        mb.open();
+
+		// TODO Save the file
+	}
+	/**
+	 * Save the file as a specific name
+	 */
+	private void saveFileAs() {
+		// show a msgBox for debugging
+		MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+        mb.setText("Info");
+        mb.setMessage("Save the file as a specific name");
+        mb.open();
+        
+		// TODO Save the file as a specific name
+	}
+
+	/**
+	 * Create contents of the window.
 	 */
 	protected void createContents() {
 		shell = new Shell();
@@ -76,26 +151,93 @@ public class Main {
 		
 		// create a menu item "File->New"
 		MenuItem mntmFile_New = new MenuItem(mnFile, SWT.NONE);
+		mntmFile_New.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [mntmFile_New] is clicked");
+                mb.open();
+                
+                newFile();
+			}
+		});
 		mntmFile_New.setText(Messages.Main_MntmFileNew_text);
 
 		// create a menu item "File->Open..."
 		MenuItem mntmFile_Open = new MenuItem(mnFile, SWT.NONE);
+		mntmFile_Open.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [mntmFile_Open] is clicked");
+                mb.open();
+                
+                openFile();
+			}
+		});
 		mntmFile_Open.setText(Messages.Main_MntmFileOpen_text);
 
 		// create a menu item "File->Save"
 		MenuItem mntmFile_Save = new MenuItem(mnFile, SWT.NONE);
+		mntmFile_Save.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [mntmFile_Save] is clicked");
+                mb.open();
+                
+                saveFile();
+			}
+		});
 		mntmFile_Save.setText(Messages.Main_MntmFileSave_text);
 
 		// create a menu item "File->Save and New"
 		MenuItem mntmFile_SaveNew = new MenuItem(mnFile, SWT.NONE);
+		mntmFile_SaveNew.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [mntmFile_SaveNew] is clicked");
+                mb.open();
+                
+                saveFile();
+                newFile();
+			}
+		});
 		mntmFile_SaveNew.setText(Messages.Main_MntmFileSaveNew_text);
 
 		// create a menu item "File->Save As..."
 		MenuItem mntmFile_SaveAs = new MenuItem(mnFile, SWT.NONE);
+		mntmFile_SaveAs.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [mntmFile_SaveAs] is clicked");
+                mb.open();
+                
+                saveFileAs();
+			}
+		});
 		mntmFile_SaveAs.setText(Messages.Main_MntmFileSaveAs_text);
 
 		// create a menu item "File->Exit"
 		MenuItem mntmFile_Exit = new MenuItem(mnFile, SWT.NONE);
+		mntmFile_Exit.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+                appExit();
+			}
+		});
 		mntmFile_Exit.setText(Messages.Main_MntmFileExit_text);
 
 		/**
@@ -109,6 +251,18 @@ public class Main {
 
 		// create a menu item "Tools->Options"
 		MenuItem mntmTools_Options = new MenuItem(mnTools, SWT.NONE);
+		mntmTools_Options.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [mntmTools_Options] is clicked");
+                mb.open();
+                
+                // TODO show options window
+			}
+		});
 		mntmTools_Options.setText(Messages.Main_MntmToolsOptions_text);
 
 
@@ -123,6 +277,18 @@ public class Main {
 
 		// create a menu item "Help->About"
 		MenuItem mntmHelp_About = new MenuItem(mnHelp, SWT.NONE);
+		mntmHelp_About.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [mntmHelp_About] is clicked");
+                mb.open();
+                
+                // TODO show about inf window
+			}
+		});
 		mntmHelp_About.setText(Messages.Main_MntmHelpAbout_text);
 		
 		/**
@@ -139,18 +305,55 @@ public class Main {
 		ToolItem tltmSavenew = new ToolItem(toolBar, SWT.NONE);
 		tltmSavenew.setSelection(true);
 		tltmSavenew.setText(Messages.Main_tltmSavenew_text);
+		tltmSavenew.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [tltmSavenew] is clicked");
+                mb.open();
+                
+                saveFile();
+                newFile();
+			}
+		});
 
 		// create a tool item "Save"
 		ToolItem tltmSave = new ToolItem(toolBar, SWT.NONE);
 		tltmSave.setWidth(24);
 		tltmSave.setSelection(true);
 		tltmSave.setText(Messages.Main_tltmSave_text);
+		tltmSave.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [tltmSave] is clicked");
+                mb.open();
+                
+                saveFile();
+			}
+		});
 
 		// create a tool item "New"
 		ToolItem tltmNew = new ToolItem(toolBar, SWT.NONE);
 		tltmNew.setWidth(24);
 		tltmNew.setSelection(true);
 		tltmNew.setText(Messages.Main_tltmNew_text);
+		tltmNew.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// show a msgBox for debugging
+				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
+                mb.setText("Info");
+                mb.setMessage("The button [tltmNew] is clicked");
+                mb.open();
+                
+                newFile();
+			}
+		});
 
 		/**
 		 * Create Labels and Texts
@@ -183,7 +386,7 @@ public class Main {
 
 		txtArchiveName = new Text(shell, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
 		FormData fd_txtArchiveName = new FormData();
-		fd_txtArchiveName.height = 50;
+		fd_txtArchiveName.height = 65;
 		fd_txtArchiveName.top = new FormAttachment(txtArchiveSn, 10);
 		fd_txtArchiveName.right = new FormAttachment(100, -10);
 		fd_txtArchiveName.left = new FormAttachment(0, 125);

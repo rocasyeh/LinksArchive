@@ -24,6 +24,7 @@ public class Messages extends NLS {
 	public static String Main_lblArchiveSn_text;
 	public static String Main_lblArchiveName_text;
 	public static String Main_lblLinks_text;
+	public static String Main_lblNewLabel_text;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
