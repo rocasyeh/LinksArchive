@@ -16,14 +16,17 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 
 public class Main {
 
+	public static ConfigModel configMdl;
 	protected Shell shell;
 	private Text txtArchiveSn;
 	private Text txtArchiveName;
 	private Text txtLinks;
+	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 
 	/**
 	 * Launch the application.
@@ -134,7 +137,7 @@ public class Main {
 	protected void createContents() {
 		shell = new Shell();
 		shell.setSize(535, 426);
-		shell.setText(Messages.Main_0);
+		shell.setText(Messages.MainTxt_title);
 		FormLayout fl_shell = new FormLayout();
 		shell.setLayout(fl_shell);
 		Menu menuBar = new Menu(shell, SWT.BAR);
@@ -144,7 +147,7 @@ public class Main {
 		 * Create a menu set "File" 
 		 */
 		MenuItem mntmFile = new MenuItem(menuBar, SWT.CASCADE);
-		mntmFile.setText(Messages.Main_MntmFile_text);
+		mntmFile.setText(Messages.MainTxt_mntmFile);
 		
 		Menu mnFile = new Menu(mntmFile);
 		mntmFile.setMenu(mnFile);
@@ -163,7 +166,7 @@ public class Main {
                 newFile();
 			}
 		});
-		mntmFile_New.setText(Messages.Main_MntmFileNew_text);
+		mntmFile_New.setText(Messages.MainTxt_mntmFileNew);
 
 		// create a menu item "File->Open..."
 		MenuItem mntmFile_Open = new MenuItem(mnFile, SWT.NONE);
@@ -179,7 +182,7 @@ public class Main {
                 openFile();
 			}
 		});
-		mntmFile_Open.setText(Messages.Main_MntmFileOpen_text);
+		mntmFile_Open.setText(Messages.MainTxt_mntmFileOpen);
 
 		// create a menu item "File->Save"
 		MenuItem mntmFile_Save = new MenuItem(mnFile, SWT.NONE);
@@ -195,7 +198,7 @@ public class Main {
                 saveFile();
 			}
 		});
-		mntmFile_Save.setText(Messages.Main_MntmFileSave_text);
+		mntmFile_Save.setText(Messages.MainTxt_mntmFileSave);
 
 		// create a menu item "File->Save and New"
 		MenuItem mntmFile_SaveNew = new MenuItem(mnFile, SWT.NONE);
@@ -212,7 +215,7 @@ public class Main {
                 newFile();
 			}
 		});
-		mntmFile_SaveNew.setText(Messages.Main_MntmFileSaveNew_text);
+		mntmFile_SaveNew.setText(Messages.MainTxt_mntmFileSaveNew);
 
 		// create a menu item "File->Save As..."
 		MenuItem mntmFile_SaveAs = new MenuItem(mnFile, SWT.NONE);
@@ -228,7 +231,7 @@ public class Main {
                 saveFileAs();
 			}
 		});
-		mntmFile_SaveAs.setText(Messages.Main_MntmFileSaveAs_text);
+		mntmFile_SaveAs.setText(Messages.MainTxt_mntmFileSaveAs);
 
 		// create a menu item "File->Exit"
 		MenuItem mntmFile_Exit = new MenuItem(mnFile, SWT.NONE);
@@ -238,13 +241,13 @@ public class Main {
                 appExit();
 			}
 		});
-		mntmFile_Exit.setText(Messages.Main_MntmFileExit_text);
+		mntmFile_Exit.setText(Messages.MainTxt_mntmFileExit);
 
 		/**
 		 * Create a menu set "Tools" 
 		 */
 		MenuItem mntmTools = new MenuItem(menuBar, SWT.CASCADE);
-		mntmTools.setText(Messages.Main_MntmTools_text);
+		mntmTools.setText(Messages.MainTxt_mntmTools);
 		
 		Menu mnTools = new Menu(mntmTools);
 		mntmTools.setMenu(mnTools);
@@ -254,23 +257,26 @@ public class Main {
 		mntmTools_Options.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// show a msgBox for debugging
+				/* show a msgBox for debugging
 				MessageBox mb = new MessageBox(shell,SWT.ICON_QUESTION | SWT.OK);
                 mb.setText("Info");
                 mb.setMessage("The button [mntmTools_Options] is clicked");
                 mb.open();
-                
-                // TODO show options window
+                */
+				
+                // show options window
+                Options opt = new Options(shell, 0);
+                opt.open();
 			}
 		});
-		mntmTools_Options.setText(Messages.Main_MntmToolsOptions_text);
+		mntmTools_Options.setText(Messages.MainTxt_mntmToolsOptions);
 
 
 		/**
 		 * Create a menu set "Help" 
 		 */
 		MenuItem mntmHelp = new MenuItem(menuBar, SWT.CASCADE);
-		mntmHelp.setText(Messages.Main_MntmHelp_text);
+		mntmHelp.setText(Messages.MainTxt_mntmHelp);
 		
 		Menu mnHelp = new Menu(mntmHelp);
 		mntmHelp.setMenu(mnHelp);
@@ -289,7 +295,7 @@ public class Main {
                 // TODO show about inf window
 			}
 		});
-		mntmHelp_About.setText(Messages.Main_MntmHelpAbout_text);
+		mntmHelp_About.setText(Messages.MainTxt_mntmHelpAbout);
 		
 		/**
 		 * Create a toolBar for MenuItem's shortcut
@@ -304,7 +310,7 @@ public class Main {
 		// create a tool item "SaveNew"
 		ToolItem tltmSavenew = new ToolItem(toolBar, SWT.NONE);
 		tltmSavenew.setSelection(true);
-		tltmSavenew.setText(Messages.Main_tltmSavenew_text);
+		tltmSavenew.setText(Messages.MainTxt_tltmSavenew);
 		tltmSavenew.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -323,7 +329,7 @@ public class Main {
 		ToolItem tltmSave = new ToolItem(toolBar, SWT.NONE);
 		tltmSave.setWidth(24);
 		tltmSave.setSelection(true);
-		tltmSave.setText(Messages.Main_tltmSave_text);
+		tltmSave.setText(Messages.MainTxt_tltmSave);
 		tltmSave.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -341,7 +347,7 @@ public class Main {
 		ToolItem tltmNew = new ToolItem(toolBar, SWT.NONE);
 		tltmNew.setWidth(24);
 		tltmNew.setSelection(true);
-		tltmNew.setText(Messages.Main_tltmNew_text);
+		tltmNew.setText(Messages.MainTxt_tltmNew);
 		tltmNew.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -365,7 +371,7 @@ public class Main {
 		fd_lblArchiveSn.left = new FormAttachment(0, 10);
 		fd_lblArchiveSn.right = new FormAttachment(0, 120);
 		lblArchiveSn.setLayoutData(fd_lblArchiveSn);
-		lblArchiveSn.setText(Messages.Main_lblArchiveSn_text);
+		lblArchiveSn.setText(Messages.MainTxt_lblArchiveSn);
 		
 		txtArchiveSn = new Text(shell, SWT.BORDER);
 		FormData fd_txtArchiveSn = new FormData();
@@ -382,7 +388,7 @@ public class Main {
 		fd_lblArchiveName.left = new FormAttachment(0, 10);
 		fd_lblArchiveName.right = new FormAttachment(0, 120);
 		lblArchiveName.setLayoutData(fd_lblArchiveName);
-		lblArchiveName.setText(Messages.Main_lblArchiveName_text);
+		lblArchiveName.setText(Messages.MainTxt_lblArchiveName);
 
 		txtArchiveName = new Text(shell, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
 		FormData fd_txtArchiveName = new FormData();
@@ -400,7 +406,7 @@ public class Main {
 		fd_lblLinks.left = new FormAttachment(0, 10);
 		fd_lblLinks.right = new FormAttachment(0, 120);
 		lblLinks.setLayoutData(fd_lblLinks);
-		lblLinks.setText(Messages.Main_lblLinks_text);
+		lblLinks.setText(Messages.MainTxt_lblLinks);
 		
 		txtLinks = new Text(shell, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
 		FormData fd_txtLinks = new FormData();
@@ -410,6 +416,5 @@ public class Main {
 		fd_txtLinks.right = new FormAttachment(100, -10);
 		txtLinks.setLayoutData(fd_txtLinks);
 		txtLinks.setText("");
-
 	}
 }

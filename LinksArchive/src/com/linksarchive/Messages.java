@@ -3,28 +3,33 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "messages"; //$NON-NLS-1$
-	public static String Main_0;
-	public static String Main_MntmFile_text;
-	public static String Main_MntmFileExit_text;
-	public static String Main_MntmFileNew_text;
-	public static String Main_MntmFileOpen_text;
-	public static String Main_MntmFileSave_text;
-	public static String Main_MntmFileSaveAs_text;
-	public static String Main_MntmFileSaveNew_text;
-	public static String Main_MntmHelp_text;
-	public static String Main_MntmHelpAbout_text;
-	public static String Main_MntmTools_text;
-	public static String Main_MntmToolsOptions_text;
-	public static String Main_btnSaveNew_text;
-	public static String Main_btnSave_text;
-	public static String Main_btnNew_text;
-	public static String Main_tltmSavenew_text;
-	public static String Main_tltmSave_text;
-	public static String Main_tltmNew_text;
-	public static String Main_lblArchiveSn_text;
-	public static String Main_lblArchiveName_text;
-	public static String Main_lblLinks_text;
-	public static String Main_lblNewLabel_text;
+	public static String MainTxt_title;
+	public static String MainTxt_mntmFile;
+	public static String MainTxt_mntmFileExit;
+	public static String MainTxt_mntmFileNew;
+	public static String MainTxt_mntmFileOpen;
+	public static String MainTxt_mntmFileSave;
+	public static String MainTxt_mntmFileSaveAs;
+	public static String MainTxt_mntmFileSaveNew;
+	public static String MainTxt_mntmHelp;
+	public static String MainTxt_mntmHelpAbout;
+	public static String MainTxt_mntmTools;
+	public static String MainTxt_mntmToolsOptions;
+	public static String MainTxt_btnSaveNew;
+	public static String MainTxt_btnSave;
+	public static String MainTxt_btnNew;
+	public static String MainTxt_tltmSavenew;
+	public static String MainTxt_tltmSave;
+	public static String MainTxt_tltmNew;
+	public static String MainTxt_lblArchiveSn;
+	public static String MainTxt_lblArchiveName;
+	public static String MainTxt_lblLinks;
+	public static String OptionsTxt_title;
+	public static String OptionsTxt_lblDefFilePath;
+	public static String OptionsTxt_btnDefFilePath;
+	public static String OptionsTxt_btnApply;
+	public static String OptionsTxt_btnOk;
+	public static String OptionsTxt_btnCancel;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
